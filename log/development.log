@@ -1,0 +1,441 @@
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (70.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lab_03_s_sapunar_1_development" /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (62.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lab_03_s_sapunar_1_test" /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (92.9ms)[0m  [1m[35mCREATE DATABASE "lab_03_s_sapunar_1_development" ENCODING = 'unicode' /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (48.5ms)[0m  [1m[35mCREATE DATABASE "lab_03_s_sapunar_1_test" ENCODING = 'unicode' /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "appointments" CASCADE /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (16.6ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "date" timestamp(6), "pet_id" bigint NOT NULL, "reason" character varying, "status" integer, "updated_at" timestamp(6) NOT NULL, "vet_id" bigint NOT NULL) /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE INDEX "index_appointments_on_pet_id" ON "appointments" ("pet_id") /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE INDEX "index_appointments_on_vet_id" ON "appointments" ("vet_id") /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "owners" CASCADE /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (15.8ms)[0m  [1m[35mCREATE TABLE "owners" ("id" bigserial primary key, "address" text, "created_at" timestamp(6) NOT NULL, "email" character varying, "first_name" character varying, "last_name" character varying, "phone" character varying, "updated_at" timestamp(6) NOT NULL) /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "pets" CASCADE /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE TABLE "pets" ("id" bigserial primary key, "breed" character varying, "created_at" timestamp(6) NOT NULL, "date_of_birth" date, "name" character varying, "owner_id" bigint NOT NULL, "species" character varying, "updated_at" timestamp(6) NOT NULL, "weight" decimal) /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE INDEX "index_pets_on_owner_id" ON "pets" ("owner_id") /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "treatments" CASCADE /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE TABLE "treatments" ("id" bigserial primary key, "administered_at" timestamp(6), "appointment_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "dosage" character varying, "medication" character varying, "name" character varying, "notes" text, "updated_at" timestamp(6) NOT NULL) /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE INDEX "index_treatments_on_appointment_id" ON "treatments" ("appointment_id") /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "vets" CASCADE /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE "vets" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "email" character varying, "first_name" character varying, "last_name" character varying, "phone" character varying, "specialization" character varying, "updated_at" timestamp(6) NOT NULL) /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mALTER TABLE "appointments" ADD CONSTRAINT "fk_rails_0f1df792b9"
+FOREIGN KEY ("pet_id")
+  REFERENCES "pets" ("id")
+ /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mALTER TABLE "appointments" ADD CONSTRAINT "fk_rails_a77d9b33fe"
+FOREIGN KEY ("vet_id")
+  REFERENCES "vets" ("id")
+ /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "pets" ADD CONSTRAINT "fk_rails_1ff5d16ccb"
+FOREIGN KEY ("owner_id")
+  REFERENCES "owners" ("id")
+ /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "treatments" ADD CONSTRAINT "fk_rails_2024053d76"
+FOREIGN KEY ("appointment_id")
+  REFERENCES "appointments" ("id")
+ /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (15.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260409131022) /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (1.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20260409130742),
+(20260409130736),
+(20260409130731),
+(20260409130718); /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (15.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-04-23 12:48:52.865962', '2026-04-23 12:48:52.865965') RETURNING "key" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '3d79895e7463efcf5d480741d72cd8090362dd25', '2026-04-23 12:48:52.870566', '2026-04-23 12:48:52.870567') RETURNING "key" /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6750264325171922940) /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(6750264325171922940) /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Lab03SSapunar1'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTreatment Load (0.4ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTreatment Load (0.5ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT "pets".* FROM "pets" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mOwner Load (0.3ms)[0m  [1m[34mSELECT "owners".* FROM "owners" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mVet Load (0.1ms)[0m  [1m[34mSELECT "vets".* FROM "vets" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mOwner Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "owners" WHERE "owners"."email" = 'juan@test.com' LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mOwner Create (0.4ms)[0m  [1m[32mINSERT INTO "owners" ("address", "created_at", "email", "first_name", "last_name", "phone", "updated_at") VALUES ('Calle 1', '2026-04-23 12:51:29.827738', 'juan@test.com', 'Juan', 'Perez', '123', '2026-04-23 12:51:29.827738') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mOwner Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "owners" WHERE "owners"."email" = 'maria@test.com' LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mOwner Create (0.2ms)[0m  [1m[32mINSERT INTO "owners" ("address", "created_at", "email", "first_name", "last_name", "phone", "updated_at") VALUES ('Calle 2', '2026-04-23 12:51:29.836221', 'maria@test.com', 'Maria', 'Lopez', '456', '2026-04-23 12:51:29.836221') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mOwner Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "owners" WHERE "owners"."email" = 'pedro@test.com' LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mOwner Create (0.3ms)[0m  [1m[32mINSERT INTO "owners" ("address", "created_at", "email", "first_name", "last_name", "phone", "updated_at") VALUES ('Calle 3', '2026-04-23 12:51:29.842395', 'pedro@test.com', 'Pedro', 'Gomez', '789', '2026-04-23 12:51:29.842395') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mPet Create (1.7ms)[0m  [1m[32mINSERT INTO "pets" ("breed", "created_at", "date_of_birth", "name", "owner_id", "species", "updated_at", "weight") VALUES ('Labrador', '2026-04-23 12:51:29.860983', '2020-01-01', 'Firulais', 1, 'dog', '2026-04-23 12:51:29.860983', 25.0) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mPet Create (1.3ms)[0m  [1m[32mINSERT INTO "pets" ("breed", "created_at", "date_of_birth", "name", "owner_id", "species", "updated_at", "weight") VALUES ('Siames', '2026-04-23 12:51:29.867088', '2021-01-01', 'Michi', 1, 'cat', '2026-04-23 12:51:29.867088', 5.0) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mPet Create (1.2ms)[0m  [1m[32mINSERT INTO "pets" ("breed", "created_at", "date_of_birth", "name", "owner_id", "species", "updated_at", "weight") VALUES ('Mini Lop', '2026-04-23 12:51:29.872827', '2022-01-01', 'Bunny', 2, 'rabbit', '2026-04-23 12:51:29.872827', 2.0) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mPet Create (1.3ms)[0m  [1m[32mINSERT INTO "pets" ("breed", "created_at", "date_of_birth", "name", "owner_id", "species", "updated_at", "weight") VALUES ('Bulldog', '2026-04-23 12:51:29.878645', '2019-01-01', 'Rocky', 3, 'dog', '2026-04-23 12:51:29.878645', 20.0) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mPet Create (1.3ms)[0m  [1m[32mINSERT INTO "pets" ("breed", "created_at", "date_of_birth", "name", "owner_id", "species", "updated_at", "weight") VALUES ('Persa', '2026-04-23 12:51:29.884373', '2020-01-01', 'Luna', 2, 'cat', '2026-04-23 12:51:29.884373', 4.0) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mVet Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "vets" WHERE "vets"."email" = 'ana@vet.com' LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mVet Create (0.3ms)[0m  [1m[32mINSERT INTO "vets" ("created_at", "email", "first_name", "last_name", "phone", "specialization", "updated_at") VALUES ('2026-04-23 12:51:29.895188', 'ana@vet.com', 'Ana', 'Martinez', '111', 'General', '2026-04-23 12:51:29.895188') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mVet Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "vets" WHERE "vets"."email" = 'luis@vet.com' LIMIT 1 /*application='Lab03SSapunar1'*/[0m
+  [1m[36mVet Create (0.3ms)[0m  [1m[32mINSERT INTO "vets" ("created_at", "email", "first_name", "last_name", "phone", "specialization", "updated_at") VALUES ('2026-04-23 12:51:29.901256', 'luis@vet.com', 'Luis', 'Rojas', '222', 'Surgery', '2026-04-23 12:51:29.901256') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mAppointment Create (1.7ms)[0m  [1m[32mINSERT INTO "appointments" ("created_at", "date", "pet_id", "reason", "status", "updated_at", "vet_id") VALUES ('2026-04-23 12:51:29.911023', '2026-04-23 12:51:29.905561', 1, 'Checkup', 0, '2026-04-23 12:51:29.911023', 1) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mAppointment Create (1.5ms)[0m  [1m[32mINSERT INTO "appointments" ("created_at", "date", "pet_id", "reason", "status", "updated_at", "vet_id") VALUES ('2026-04-23 12:51:29.916560', '2026-04-23 12:51:29.916259', 2, 'Vaccination', 1, '2026-04-23 12:51:29.916560', 1) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mAppointment Create (1.1ms)[0m  [1m[32mINSERT INTO "appointments" ("created_at", "date", "pet_id", "reason", "status", "updated_at", "vet_id") VALUES ('2026-04-23 12:51:29.922768', '2026-04-23 12:51:29.922182', 3, 'Injury', 2, '2026-04-23 12:51:29.922768', 2) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mAppointment Create (1.4ms)[0m  [1m[32mINSERT INTO "appointments" ("created_at", "date", "pet_id", "reason", "status", "updated_at", "vet_id") VALUES ('2026-04-23 12:51:29.928806', '2026-04-23 12:51:29.927525', 4, 'Surgery', 2, '2026-04-23 12:51:29.928806', 2) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mAppointment Create (1.8ms)[0m  [1m[32mINSERT INTO "appointments" ("created_at", "date", "pet_id", "reason", "status", "updated_at", "vet_id") VALUES ('2026-04-23 12:51:29.934704', '2026-04-23 12:51:29.934036', 5, 'Skin issue', 3, '2026-04-23 12:51:29.934704', 1) RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTreatment Create (1.4ms)[0m  [1m[32mINSERT INTO "treatments" ("administered_at", "appointment_id", "created_at", "dosage", "medication", "name", "notes", "updated_at") VALUES ('2026-04-23 12:51:29.940129', 2, '2026-04-23 12:51:29.945550', '1 dose', 'Rabies', 'Vaccine', 'OK', '2026-04-23 12:51:29.945550') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTreatment Create (1.1ms)[0m  [1m[32mINSERT INTO "treatments" ("administered_at", "appointment_id", "created_at", "dosage", "medication", "name", "notes", "updated_at") VALUES ('2026-04-23 12:51:29.950874', 3, '2026-04-23 12:51:29.951200', '50mg', 'Ibuprofen', 'Pain Relief', 'Monitor', '2026-04-23 12:51:29.951200') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTreatment Create (1.0ms)[0m  [1m[32mINSERT INTO "treatments" ("administered_at", "appointment_id", "created_at", "dosage", "medication", "name", "notes", "updated_at") VALUES ('2026-04-23 12:51:29.956060', 4, '2026-04-23 12:51:29.956227', 'Standard', 'Anesthesia', 'Surgery', 'Done', '2026-04-23 12:51:29.956227') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTreatment Create (1.1ms)[0m  [1m[32mINSERT INTO "treatments" ("administered_at", "appointment_id", "created_at", "dosage", "medication", "name", "notes", "updated_at") VALUES ('2026-04-23 12:51:29.960632', 3, '2026-04-23 12:51:29.960916', '-', 'None', 'Bandage', 'Applied', '2026-04-23 12:51:29.960916') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTreatment Create (1.0ms)[0m  [1m[32mINSERT INTO "treatments" ("administered_at", "appointment_id", "created_at", "dosage", "medication", "name", "notes", "updated_at") VALUES ('2026-04-23 12:51:29.965363', 2, '2026-04-23 12:51:29.965531', '-', 'None', 'Follow-up', 'Check later', '2026-04-23 12:51:29.965531') RETURNING "id" /*application='Lab03SSapunar1'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Lab03SSapunar1'*/[0m
+Started GET "/" for 127.0.0.1 at 2026-04-23 08:53:43 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03SSapunar1'*/[0m
+Processing by OwnersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering owners/index.html.erb within layouts/application
+  [1m[36mOwner Load (8.2ms)[0m  [1m[34mSELECT "owners".* FROM "owners" /*action='index',application='Lab03SSapunar1',controller='owners'*/[0m
+  ↳ app/views/owners/index.html.erb:15
+  [1m[36mPet Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pets" WHERE "pets"."owner_id" = 1 /*action='index',application='Lab03SSapunar1',controller='owners'*/[0m
+  ↳ app/views/owners/index.html.erb:22
+  [1m[36mPet Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pets" WHERE "pets"."owner_id" = 2 /*action='index',application='Lab03SSapunar1',controller='owners'*/[0m
+  ↳ app/views/owners/index.html.erb:22
+  [1m[36mPet Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "pets" WHERE "pets"."owner_id" = 3 /*action='index',application='Lab03SSapunar1',controller='owners'*/[0m
+  ↳ app/views/owners/index.html.erb:22
+  Rendered owners/index.html.erb within layouts/application (Duration: 52.6ms | GC: 24.2ms)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 61.8ms | GC: 26.3ms)
+Completed 200 OK in 98ms (Views: 50.1ms | ActiveRecord: 16.1ms (4 queries, 0 cached) | GC: 26.3ms)
+
+
+Started GET "/pets" for 127.0.0.1 at 2026-04-23 08:53:46 -0400
+Processing by PetsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets" /*action='index',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/index.html.erb:16
+  [1m[36mOwner Load (0.6ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 1 LIMIT 1 /*action='index',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/index.html.erb:21
+  [1m[36mCACHE Owner Load (0.0ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 1 LIMIT 1[0m
+  ↳ app/views/pets/index.html.erb:21
+  [1m[36mOwner Load (0.4ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 2 LIMIT 1 /*action='index',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/index.html.erb:21
+  [1m[36mOwner Load (0.3ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 3 LIMIT 1 /*action='index',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/index.html.erb:21
+  [1m[36mCACHE Owner Load (0.0ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 2 LIMIT 1[0m
+  ↳ app/views/pets/index.html.erb:21
+  Rendered pets/index.html.erb within layouts/application (Duration: 25.9ms | GC: 2.5ms)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 39.5ms | GC: 3.2ms)
+Completed 200 OK in 41ms (Views: 38.6ms | ActiveRecord: 1.8ms (6 queries, 2 cached) | GC: 3.2ms)
+
+
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:54:46 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.6ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering pets/show.html.erb within layouts/application
+  [1m[36mOwner Load (0.5ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:11
+  Rendered pets/show.html.erb within layouts/application (Duration: 25.9ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.2ms | GC: 0.5ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 1.1ms)
+
+
+  
+ActionView::Template::Error (undefined method 'appointments' for an instance of Pet)
+Caused by: NoMethodError (undefined method 'appointments' for an instance of Pet)
+
+Information for: ActionView::Template::Error (undefined method 'appointments' for an instance of Pet):
+    24: 
+    25:   <tbody>
+    26:     <% @pet.appointments.each do |appointment| %>
+    27:       <tr>
+    28:         <td><%= appointment.date.strftime("%B %d, %Y") %></td>
+    29:         
+    30:         <td>
+  
+app/views/pets/show.html.erb:27
+
+Information for cause: NoMethodError (undefined method 'appointments' for an instance of Pet):
+  
+app/views/pets/show.html.erb:27
+Started GET "/favicon.ico" for 127.0.0.1 at 2026-04-23 08:54:46 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:55:43 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 2.9ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+  
+ActiveRecord::AssociationNotFoundError (Association named 'appointments' was not found on Pet; perhaps you misspelled it?):
+  
+app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:55:44 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::AssociationNotFoundError (Association named 'appointments' was not found on Pet; perhaps you misspelled it?):
+  
+app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:57:37 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 2.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::AssociationNotFoundError (Association named 'appointments' was not found on Pet; perhaps you misspelled it?):
+  
+app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:57:37 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::AssociationNotFoundError (Association named 'appointments' was not found on Pet; perhaps you misspelled it?):
+  
+app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:57:38 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.6ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+  
+ActiveRecord::AssociationNotFoundError (Association named 'appointments' was not found on Pet; perhaps you misspelled it?):
+  
+app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:57:39 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.6ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::AssociationNotFoundError (Association named 'appointments' was not found on Pet; perhaps you misspelled it?):
+  
+app/controllers/pets_controller.rb:7:in 'PetsController#show'
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:58:25 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mAppointment Load (0.8ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mVet Load (0.3ms)[0m  [1m[34mSELECT "vets".* FROM "vets" WHERE "vets"."id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mTreatment Load (0.3ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" WHERE "treatments"."appointment_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering pets/show.html.erb within layouts/application
+  [1m[36mOwner Load (0.5ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:11
+  Rendered pets/show.html.erb within layouts/application (Duration: 13.3ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | GC: 1.6ms)
+Completed 500 Internal Server Error in 69ms (ActiveRecord: 11.1ms (5 queries, 0 cached) | GC: 6.3ms)
+
+
+  
+ActionView::Template::Error (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy)
+Caused by: NoMethodError (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy)
+
+Information for: ActionView::Template::Error (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy):
+    24: 
+    25:   <tbody>
+    26:     <% @pet.appointments.upcoming.each do |appointment| %>
+    27:       <tr>
+    28:         <td><%= appointment.date.strftime("%B %d, %Y") %></td>
+    29:         
+    30:         <td>
+  
+app/views/pets/show.html.erb:27
+
+Information for cause: NoMethodError (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy):
+  
+app/views/pets/show.html.erb:27
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:58:26 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mVet Load (0.4ms)[0m  [1m[34mSELECT "vets".* FROM "vets" WHERE "vets"."id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mTreatment Load (0.3ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" WHERE "treatments"."appointment_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering pets/show.html.erb within layouts/application
+  [1m[36mOwner Load (0.3ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:11
+  Rendered pets/show.html.erb within layouts/application (Duration: 2.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.7ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy)
+Caused by: NoMethodError (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy)
+
+Information for: ActionView::Template::Error (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy):
+    24: 
+    25:   <tbody>
+    26:     <% @pet.appointments.upcoming.each do |appointment| %>
+    27:       <tr>
+    28:         <td><%= appointment.date.strftime("%B %d, %Y") %></td>
+    29:         
+    30:         <td>
+  
+app/views/pets/show.html.erb:27
+
+Information for cause: NoMethodError (undefined method 'upcoming' for an instance of ActiveRecord::Associations::CollectionProxy):
+  
+app/views/pets/show.html.erb:27
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:59:10 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mVet Load (0.4ms)[0m  [1m[34mSELECT "vets".* FROM "vets" WHERE "vets"."id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mTreatment Load (0.3ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" WHERE "treatments"."appointment_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering pets/show.html.erb within layouts/application
+  [1m[36mOwner Load (0.4ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:11
+  [1m[36mAppointment Load (0.8ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 AND (date > '2026-04-23') ORDER BY "appointments"."date" ASC /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:27
+  [1m[36mVet Load (0.4ms)[0m  [1m[34mSELECT "vets".* FROM "vets" WHERE "vets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:32
+  [1m[36mAppointment Load (0.5ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 AND (date < '2026-04-23') ORDER BY "appointments"."date" DESC /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:55
+  Rendered pets/show.html.erb within layouts/application (Duration: 22.9ms | GC: 2.0ms)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.3ms | GC: 2.0ms)
+Completed 200 OK in 76ms (Views: 24.2ms | ActiveRecord: 13.6ms (8 queries, 0 cached) | GC: 5.0ms)
+
+
+Started GET "/vets/1" for 127.0.0.1 at 2026-04-23 08:59:14 -0400
+Processing by VetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mVet Load (0.4ms)[0m  [1m[34mSELECT "vets".* FROM "vets" WHERE "vets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='vets'*/[0m
+  ↳ app/controllers/vets_controller.rb:7:in 'VetsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering vets/show.html.erb within layouts/application
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."vet_id" = 1 /*action='show',application='Lab03SSapunar1',controller='vets'*/[0m
+  ↳ app/views/vets/show.html.erb:21
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='vets'*/[0m
+  ↳ app/views/vets/show.html.erb:24
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 2 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='vets'*/[0m
+  ↳ app/views/vets/show.html.erb:24
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 5 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='vets'*/[0m
+  ↳ app/views/vets/show.html.erb:24
+  Rendered vets/show.html.erb within layouts/application (Duration: 11.4ms | GC: 1.0ms)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | GC: 1.0ms)
+Completed 200 OK in 17ms (Views: 12.3ms | ActiveRecord: 1.7ms (5 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/pets/1" for 127.0.0.1 at 2026-04-23 08:59:15 -0400
+Processing by PetsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mVet Load (0.5ms)[0m  [1m[34mSELECT "vets".* FROM "vets" WHERE "vets"."id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  [1m[36mTreatment Load (0.3ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" WHERE "treatments"."appointment_id" = 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/controllers/pets_controller.rb:7:in 'PetsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering pets/show.html.erb within layouts/application
+  [1m[36mOwner Load (0.7ms)[0m  [1m[34mSELECT "owners".* FROM "owners" WHERE "owners"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:11
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 AND (date > '2026-04-23') ORDER BY "appointments"."date" ASC /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:27
+  [1m[36mVet Load (0.3ms)[0m  [1m[34mSELECT "vets".* FROM "vets" WHERE "vets"."id" = 1 LIMIT 1 /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:32
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."pet_id" = 1 AND (date < '2026-04-23') ORDER BY "appointments"."date" DESC /*action='show',application='Lab03SSapunar1',controller='pets'*/[0m
+  ↳ app/views/pets/show.html.erb:55
+  Rendered pets/show.html.erb within layouts/application (Duration: 10.3ms | GC: 0.0ms)
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 11.1ms | ActiveRecord: 3.4ms (8 queries, 0 cached) | GC: 0.7ms)
+
+
